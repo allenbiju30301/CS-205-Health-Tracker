@@ -5,6 +5,7 @@ import SleepTracker from './modules/SleepTracker'
 import DailyGraph from './components/DailyGraph'
 import WeeklyGraph from './components/WeeklyGraph'
 import SleepGraph from './components/SleepGraph'
+import MoodHeatmap from './components/MoodHeatmap'
 import HistoryView from './components/HistoryView'
 import FileManager from './components/FileManager'
 
@@ -66,6 +67,16 @@ function App() {
               >
                 Sleep
               </button>
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'analytics'
+                    ? 'border-indigo-500 text-indigo-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Analytics
+              </button>
             </nav>
           </div>
 
@@ -87,6 +98,12 @@ function App() {
                 <SleepTracker />
                 <SleepGraph />
               </div>
+            </div>
+          )}
+
+          {activeTab === 'analytics' && (
+            <div className="space-y-6">
+              <MoodHeatmap />
             </div>
           )}
 
