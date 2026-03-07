@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { HealthDataProvider } from './context/HealthDataContext'
 import MoodTracker from './modules/MoodTracker'
+import SleepTracker from './modules/SleepTracker'
 import DailyGraph from './components/DailyGraph'
 import WeeklyGraph from './components/WeeklyGraph'
+import SleepGraph from './components/SleepGraph'
 import HistoryView from './components/HistoryView'
 import FileManager from './components/FileManager'
 
@@ -54,6 +56,16 @@ function App() {
               >
                 Data Management
               </button>
+              <button
+                onClick={() => setActiveTab('sleep')}
+                className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'sleep'
+                    ? 'border-indigo-500 text-indigo-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Sleep
+              </button>
             </nav>
           </div>
 
@@ -61,8 +73,19 @@ function App() {
             <div className="space-y-6">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <MoodTracker />
+                <SleepTracker />
                 <DailyGraph />
                 <WeeklyGraph />
+                <SleepGraph />
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'sleep' && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <SleepTracker />
+                <SleepGraph />
               </div>
             </div>
           )}
