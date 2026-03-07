@@ -7,6 +7,7 @@ const HealthDataContext = createContext()
 export function HealthDataProvider({ children }) {
   const [moodEntries, setMoodEntries] = useState([])
   const [sleepEntries, setSleepEntries] = useState([])
+  const [waterEntries, setWaterEntries] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [fileHandle, setFileHandle] = useState(null)
   const [fileStatus, setFileStatus] = useState('none') // 'none', 'saving', 'saved', 'error'
@@ -19,6 +20,7 @@ export function HealthDataProvider({ children }) {
       const loaded = loadData()
       setMoodEntries(loaded.moodEntries)
       setSleepEntries(loaded.sleepEntries || [])
+      setWaterEntries(loaded.waterEntries || [])
       setIsLoaded(true)
       
       // Try to set up file auto-save
@@ -40,7 +42,8 @@ export function HealthDataProvider({ children }) {
             if (!storageDate || (fileDate && fileDate > storageDate)) {
               setMoodEntries(fileData.moodEntries || [])
               setSleepEntries(fileData.sleepEntries || [])
-              saveData(fileData.moodEntries || [], fileData.sleepEntries || [])
+              setWaterEntries(fileData.waterEntries || [])
+              saveData(fileData.moodEntries || [], fileData.sleepEntries || [], fileData.waterEntries || [])
             }
           }
         }
@@ -54,6 +57,7 @@ export function HealthDataProvider({ children }) {
           await writeFile(handle, {
             moodEntries: loaded.moodEntries,
             sleepEntries: loaded.sleepEntries || [],
+            waterEntries: loaded.waterEntries || [],
             lastSaved: new Date().toISOString()
           })
         }
@@ -66,10 +70,10 @@ export function HealthDataProvider({ children }) {
   // Auto-save to localStorage and file when data changes
   useEffect(() => {
     if (isLoaded) {
-      saveData(moodEntries, sleepEntries)
+      saveData(moodEntries, sleepEntries, waterEntries)
       saveToFile()
     }
-  }, [moodEntries, sleepEntries, isLoaded])
+  }, [moodEntries, sleepEntries, waterEntries, isLoaded])
 
   async function saveToFile() {
     const handle = fileHandleRef.current
@@ -79,6 +83,7 @@ export function HealthDataProvider({ children }) {
     const success = await writeFile(handle, {
       moodEntries,
       sleepEntries,
+      waterEntries,
       lastSaved: new Date().toISOString()
     })
     
@@ -114,7 +119,8 @@ export function HealthDataProvider({ children }) {
       if (data?.moodEntries !== undefined) {
         setMoodEntries(data.moodEntries || [])
         setSleepEntries(data.sleepEntries || [])
-        saveData(data.moodEntries || [], data.sleepEntries || [])
+        setWaterEntries(data.waterEntries || [])
+        saveData(data.moodEntries || [], data.sleepEntries || [], data.waterEntries || [])
         return true
       }
     }
@@ -137,6 +143,14 @@ export function HealthDataProvider({ children }) {
     setSleepEntries(sleepEntries.filter(e => e.id !== id))
   }
 
+  const addWaterEntry = (entry) => {
+    setWaterEntries([...waterEntries, entry])
+  }
+
+  const deleteWaterEntry = (id) => {
+    setWaterEntries(waterEntries.filter(e => e.id !== id))
+  }
+
   const setAllData = (moodEntries) => {
     setMoodEntries(moodEntries)
   }
@@ -145,6 +159,7 @@ export function HealthDataProvider({ children }) {
     const data = {
       moodEntries,
       sleepEntries,
+      waterEntries,
       exportedAt: new Date().toISOString(),
     }
     return JSON.stringify(data, null, 2)
@@ -162,6 +177,10 @@ export function HealthDataProvider({ children }) {
         setSleepEntries(data.sleepEntries)
         changed = true
       }
+      if (data.waterEntries && Array.isArray(data.waterEntries)) {
+        setWaterEntries(data.waterEntries)
+        changed = true
+      }
       return changed
     } catch (error) {
       console.error('Error importing data:', error)
@@ -174,10 +193,13 @@ export function HealthDataProvider({ children }) {
       value={{
         moodEntries,
         sleepEntries,
+        waterEntries,
         addMoodEntry,
         deleteMoodEntry,
         addSleepEntry,
         deleteSleepEntry,
+        addWaterEntry,
+        deleteWaterEntry,
         exportData,
         importData,
         setAllData,

@@ -47,6 +47,9 @@ function HistoryView() {
                         <span className="text-gray-500 text-sm ml-2">
                           • {entry.time}
                         </span>
+                        {entry.note && (
+                          <p className="text-sm text-gray-600 mt-1">{entry.note}</p>
+                        )}
                       </div>
                       <button
                         onClick={() => {

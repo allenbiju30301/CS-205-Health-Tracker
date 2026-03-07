@@ -13,6 +13,7 @@ const MOOD_LABELS = {
 function MoodTracker() {
   const { moodEntries, addMoodEntry, deleteMoodEntry } = useHealthData()
   const [selectedMood, setSelectedMood] = useState(null)
+  const [note, setNote] = useState('')
 
   const handleSelectMood = (mood) => {
     setSelectedMood(mood)
@@ -26,6 +27,7 @@ function MoodTracker() {
     const newEntry = {
       id: Date.now(),
       mood: selectedMood,
+      note: note.trim() || undefined,
       timestamp: now.toISOString(),
       date: getTodayFormatted(),
       time: now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }),
@@ -33,6 +35,7 @@ function MoodTracker() {
 
     addMoodEntry(newEntry)
     setSelectedMood(null)
+    setNote('')
   }
 
   const latestEntry = moodEntries.length > 0
@@ -71,6 +74,14 @@ function MoodTracker() {
         ))}
       </div>
 
+      <input
+        type="text"
+        placeholder="Add a note (optional)"
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        className="w-full mb-4 py-2 px-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+      />
+
       <button
         onClick={handleSubmit}
         disabled={!selectedMood}
@@ -108,13 +119,18 @@ function MoodTracker() {
                 key={entry.id}
                 className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                <div>
+                <div className="flex-1 min-w-0">
                   <span className="font-medium text-gray-800">
                     {entry.mood} – {MOOD_LABELS[entry.mood] || 'Mood'}
                   </span>
                   <span className="text-gray-500 text-sm ml-2">
                     • {entry.date} at {entry.time}
                   </span>
+                  {entry.note && (
+                    <p className="text-sm text-gray-600 mt-1 truncate" title={entry.note}>
+                      {entry.note}
+                    </p>
+                  )}
                 </div>
                 <button
                   onClick={() => {

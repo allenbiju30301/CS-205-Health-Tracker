@@ -2,10 +2,15 @@ import { useState } from 'react'
 import { HealthDataProvider } from './context/HealthDataContext'
 import MoodTracker from './modules/MoodTracker'
 import SleepTracker from './modules/SleepTracker'
+import WaterTracker from './modules/WaterTracker'
 import DailyGraph from './components/DailyGraph'
 import WeeklyGraph from './components/WeeklyGraph'
 import SleepGraph from './components/SleepGraph'
+import WaterGraph from './components/WaterGraph'
 import MoodHeatmap from './components/MoodHeatmap'
+import CorrelationChart from './components/CorrelationChart'
+import StatsCard from './components/StatsCard'
+import FeaturesChecklist from './components/FeaturesChecklist'
 import HistoryView from './components/HistoryView'
 import FileManager from './components/FileManager'
 
@@ -82,12 +87,20 @@ function App() {
 
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
+              <div className="flex gap-4 flex-wrap items-start">
+                <div className="flex-1 min-w-[280px]">
+                  <StatsCard />
+                </div>
+                <FeaturesChecklist />
+              </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <MoodTracker />
                 <SleepTracker />
+                <WaterTracker />
                 <DailyGraph />
                 <WeeklyGraph />
                 <SleepGraph />
+                <WaterGraph />
               </div>
             </div>
           )}
@@ -104,6 +117,7 @@ function App() {
           {activeTab === 'analytics' && (
             <div className="space-y-6">
               <MoodHeatmap />
+              <CorrelationChart />
             </div>
           )}
 
