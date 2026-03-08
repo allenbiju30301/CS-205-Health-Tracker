@@ -96,8 +96,8 @@ function FileManager() {
               )}
             </div>
           ) : (
-            <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-sm text-blue-700">
+            <div className="mb-3 p-3 bg-theme-light border border-theme-accent rounded-lg">
+              <p className="text-sm text-theme-primary-dark">
                 File will be set up automatically on first use. Your data is saved to browser storage.
               </p>
             </div>
@@ -111,7 +111,7 @@ function FileManager() {
                   setTimeout(() => setImportSuccess(false), 3000)
                 }
               }}
-              className="flex-1 bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+              className="flex-1 bg-theme-primary text-white py-2 px-4 rounded-lg transition-colors font-medium"
             >
               {fileHandle ? 'Change File Location' : 'Set Up File Now'}
             </button>
@@ -123,7 +123,7 @@ function FileManager() {
                   setTimeout(() => setImportSuccess(false), 3000)
                 }
               }}
-              className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              className="flex-1 bg-theme-primary text-white py-2 px-4 rounded-lg transition-colors font-medium"
             >
               Load from File
             </button>
@@ -137,7 +137,7 @@ function FileManager() {
           </p>
           <button
             onClick={handleExport}
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+            className="w-full bg-theme-primary text-white py-2 px-4 rounded-lg transition-colors font-medium"
           >
             Export to JSON File
           </button>
@@ -174,7 +174,7 @@ function FileManager() {
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
               placeholder='{"moodEntries": [...] }'
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus-theme font-mono text-sm"
               rows="8"
             />
           </div>

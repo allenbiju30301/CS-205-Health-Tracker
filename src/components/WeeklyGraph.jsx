@@ -39,7 +39,7 @@ function WeeklyGraph() {
           <XAxis dataKey="day" />
           <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
           <Tooltip />
-          <Bar dataKey="averageMood" fill="#6366f1" name="Average Mood (1–5)" />
+          <Bar dataKey="averageMood" fill="var(--color-primary)" name="Average Mood (1–5)" />
         </BarChart>
       </ResponsiveContainer>
     </div>

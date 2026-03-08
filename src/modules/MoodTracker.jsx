@@ -58,7 +58,7 @@ function MoodTracker() {
             onClick={() => handleSelectMood(mood)}
             className={`flex-1 py-3 rounded-lg font-semibold border transition-colors ${
               selectedMood === mood
-                ? 'bg-indigo-600 text-white border-indigo-600'
+                ? 'bg-theme-primary text-white border-theme-primary'
                 : 'bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100'
             }`}
           >
@@ -79,7 +79,7 @@ function MoodTracker() {
         placeholder="Add a note (optional)"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        className="w-full mb-4 py-2 px-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 placeholder-gray-500 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+        className="w-full mb-4 py-2 px-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 placeholder-gray-500 focus-theme"
       />
 
       <button
@@ -87,7 +87,7 @@ function MoodTracker() {
         disabled={!selectedMood}
         className={`w-full mb-6 py-2 px-4 rounded-lg font-medium transition-colors ${
           selectedMood
-            ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+            ? 'bg-theme-primary text-white'
             : 'bg-gray-200 text-gray-500 cursor-not-allowed'
         }`}
       >
@@ -95,9 +95,9 @@ function MoodTracker() {
       </button>
 
       {latestEntry && (
-        <div className="mb-6 p-4 bg-indigo-50 rounded-lg">
+        <div className="mb-6 p-4 bg-theme-light rounded-lg">
           <p className="text-sm text-gray-600 mb-1">Last recorded mood:</p>
-          <p className="text-lg font-semibold text-indigo-700">
+          <p className="text-lg font-semibold text-theme-primary-dark">
             {latestEntry.mood} – {MOOD_LABELS[latestEntry.mood] || 'Mood'}
           </p>
           <p className="text-xs text-gray-500 mt-1">

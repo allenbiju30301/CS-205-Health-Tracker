@@ -29,9 +29,9 @@ function WaterTracker() {
         Log how many glasses of water you&apos;ve had today. Goal: {GOAL} glasses.
       </p>
 
-      <div className="mb-6 p-4 bg-indigo-50 rounded-lg">
+      <div className="mb-6 p-4 bg-theme-light rounded-lg">
         <p className="text-sm text-gray-600 mb-1">Today&apos;s total</p>
-        <p className="text-2xl font-bold text-indigo-700">
+        <p className="text-2xl font-bold text-theme-primary-dark">
           {todayGlasses} / {GOAL} glasses
         </p>
       </div>
@@ -43,7 +43,7 @@ function WaterTracker() {
             <button
               key={g}
               onClick={() => handleAdd(g)}
-              className="py-2 px-4 rounded-lg font-semibold border border-gray-300 bg-gray-50 text-gray-800 hover:bg-indigo-100 hover:border-indigo-400 transition-colors"
+              className="py-2 px-4 rounded-lg font-semibold border border-gray-300 bg-gray-50 text-gray-800 hover-bg-theme-light hover-border-theme-accent transition-colors"
             >
               +{g}
             </button>

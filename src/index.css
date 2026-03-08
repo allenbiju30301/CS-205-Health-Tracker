@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+[data-theme="indigo"] {
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+  --color-light-bg: #eef2ff;
+  --color-accent: #818cf8;
+}
+
+[data-theme="rose"] {
+  --color-primary: #f43f5e;
+  --color-primary-dark: #e11d48;
+  --color-light-bg: #fff1f2;
+  --color-accent: #fb7185;
+}
+
+[data-theme="forest"] {
+  --color-primary: #16a34a;
+  --color-primary-dark: #15803d;
+  --color-light-bg: #f0fdf4;
+  --color-accent: #22c55e;
+}
+
+[data-theme="sunset"] {
+  --color-primary: #f97316;
+  --color-primary-dark: #ea580c;
+  --color-light-bg: #fff7ed;
+  --color-accent: #fb923c;
+}
+
+.bg-theme-primary { background-color: var(--color-primary); }
+.bg-theme-primary:hover { background-color: var(--color-primary-dark); }
+.bg-theme-light { background-color: var(--color-light-bg); }
+.hover-bg-theme-light:hover { background-color: var(--color-light-bg); }
+.hover-border-theme-accent:hover { border-color: var(--color-accent); }
+.text-theme-primary { color: var(--color-primary); }
+.text-theme-primary-dark { color: var(--color-primary-dark); }
+.border-theme-primary { border-color: var(--color-primary); }
+.border-theme-accent { border-color: var(--color-accent); }
+.focus-theme:focus { outline: none; box-shadow: 0 0 0 2px var(--color-primary); border-color: var(--color-primary); }
+.bg-theme-page { background: linear-gradient(to bottom right, var(--color-light-bg), #fff); }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

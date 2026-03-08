@@ -62,7 +62,7 @@ function SleepTracker() {
               onClick={() => setHours(h)}
               className={`py-2 px-4 rounded-lg font-semibold border transition-colors ${
                 hours === h
-                  ? 'bg-indigo-600 text-white border-indigo-600'
+                  ? 'bg-theme-primary text-white border-theme-primary'
                   : 'bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100'
               }`}
             >
@@ -81,7 +81,7 @@ function SleepTracker() {
               onClick={() => setQuality(q)}
               className={`flex-1 py-3 rounded-lg font-semibold border transition-colors ${
                 quality === q
-                  ? 'bg-indigo-600 text-white border-indigo-600'
+                  ? 'bg-theme-primary text-white border-theme-primary'
                   : 'bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100'
               }`}
             >
@@ -105,7 +105,7 @@ function SleepTracker() {
             type="time"
             value={bedtime}
             onChange={(e) => setBedtime(e.target.value)}
-            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus-theme"
           />
         </div>
         <div>
@@ -114,7 +114,7 @@ function SleepTracker() {
             type="time"
             value={wakeTime}
             onChange={(e) => setWakeTime(e.target.value)}
-            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full py-2 px-3 border border-gray-300 rounded-lg focus-theme"
           />
         </div>
       </div>
@@ -124,7 +124,7 @@ function SleepTracker() {
         disabled={hours == null || quality == null}
         className={`w-full mb-6 py-2 px-4 rounded-lg font-medium transition-colors ${
           hours != null && quality != null
-            ? 'bg-indigo-600 text-white hover:bg-indigo-700'
+            ? 'bg-theme-primary text-white'
             : 'bg-gray-200 text-gray-500 cursor-not-allowed'
         }`}
       >
@@ -132,9 +132,9 @@ function SleepTracker() {
       </button>
 
       {latestEntry && (
-        <div className="mb-6 p-4 bg-indigo-50 rounded-lg">
+        <div className="mb-6 p-4 bg-theme-light rounded-lg">
           <p className="text-sm text-gray-600 mb-1">Last recorded sleep:</p>
-          <p className="text-lg font-semibold text-indigo-700">
+          <p className="text-lg font-semibold text-theme-primary-dark">
             {latestEntry.hours}h – {QUALITY_LABELS[latestEntry.quality] || 'Quality'}
           </p>
           <p className="text-xs text-gray-500 mt-1">

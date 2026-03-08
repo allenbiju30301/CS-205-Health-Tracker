@@ -36,7 +36,7 @@ function WaterGraph() {
         <BarChart data={weeklyData}>
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip contentStyle={{ backgroundColor: 'rgb(255,255,255)', border: '1px solid #e5e7eb' }} />
-          <Bar dataKey="glasses" fill="#06b6d4" name="Glasses" />
+          <Bar dataKey="glasses" fill="var(--color-primary)" name="Glasses" />
         </BarChart>
       </ResponsiveContainer>
     </div>

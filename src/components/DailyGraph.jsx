@@ -52,7 +52,7 @@ function DailyGraph() {
           <XAxis dataKey="time" />
           <YAxis domain={[1, 5]} ticks={[1, 2, 3, 4, 5]} />
           <Tooltip />
-          <Line type="monotone" dataKey="mood" stroke="#6366f1" strokeWidth={2} name="Mood (1–5)" />
+          <Line type="monotone" dataKey="mood" stroke="var(--color-primary)" strokeWidth={2} name="Mood (1–5)" />
         </LineChart>
       </ResponsiveContainer>
     </div>

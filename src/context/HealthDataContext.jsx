@@ -3,11 +3,13 @@ import { loadData, saveData, saveFileHandleInfo, getFileHandleInfo } from '../ut
 import { createFile, openFile, writeFile, readFile } from '../utils/fileOperations'
 
 const HealthDataContext = createContext()
+const THEME_KEY = 'healthTrackingTheme'
 
 export function HealthDataProvider({ children }) {
   const [moodEntries, setMoodEntries] = useState([])
   const [sleepEntries, setSleepEntries] = useState([])
   const [waterEntries, setWaterEntries] = useState([])
+  const [theme, setTheme] = useState(() => localStorage.getItem(THEME_KEY) || 'indigo')
   const [isLoaded, setIsLoaded] = useState(false)
   const [fileHandle, setFileHandle] = useState(null)
   const [fileStatus, setFileStatus] = useState('none') // 'none', 'saving', 'saved', 'error'
@@ -66,6 +68,10 @@ export function HealthDataProvider({ children }) {
     
     initialize()
   }, [])
+
+  useEffect(() => {
+    localStorage.setItem(THEME_KEY, theme)
+  }, [theme])
 
   // Auto-save to localStorage and file when data changes
   useEffect(() => {
@@ -207,6 +213,8 @@ export function HealthDataProvider({ children }) {
         loadFromFile,
         fileHandle,
         fileStatus,
+        theme,
+        setTheme,
       }}
     >
       {children}

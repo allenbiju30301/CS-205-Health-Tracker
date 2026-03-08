@@ -40,7 +40,7 @@ function SleepGraph() {
           <XAxis dataKey="day" />
           <YAxis domain={[0, 12]} />
           <Tooltip />
-          <Bar dataKey="hours" fill="#6366f1" name="Hours slept" />
+          <Bar dataKey="hours" fill="var(--color-primary)" name="Hours slept" />
         </BarChart>
       </ResponsiveContainer>
     </div>

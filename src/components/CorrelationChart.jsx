@@ -58,7 +58,7 @@ function CorrelationChart() {
                 labelFormatter={(_, payload) => payload[0]?.payload?.date || ''}
                 formatter={(val, name) => [val, name === 'hours' ? 'Hours slept' : 'Avg mood']}
               />
-              <Scatter data={scatterData} fill="#6366f1" name="Sleep vs mood" />
+              <Scatter data={scatterData} fill="var(--color-primary)" name="Sleep vs mood" />
             </ScatterChart>
           </ResponsiveContainer>
           <p className="text-sm text-gray-600 mt-4">{insight}</p>
