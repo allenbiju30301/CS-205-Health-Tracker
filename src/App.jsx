@@ -11,6 +11,8 @@ import MoodHeatmap from './components/MoodHeatmap'
 import CorrelationChart from './components/CorrelationChart'
 import StatsCard from './components/StatsCard'
 import MoodQuote from './components/MoodQuote'
+import DashboardGreeting from './components/DashboardGreeting'
+import StreakBadge from './components/StreakBadge'
 import FeaturesChecklist from './components/FeaturesChecklist'
 import HistoryView from './components/HistoryView'
 import FileManager from './components/FileManager'
@@ -40,7 +42,10 @@ function AppContent() {
                 Track how you feel over time with a simple 1–5 mood scale
               </p>
             </div>
-            <ThemePicker />
+            <div className="flex items-center gap-4">
+              <StreakBadge />
+              <ThemePicker />
+            </div>
           </header>
 
           <div className="mb-6 border-b border-gray-200">
@@ -100,6 +105,7 @@ function AppContent() {
 
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
+              <DashboardGreeting />
               <MoodQuote />
               <div className="flex gap-4 flex-wrap items-start">
                 <div className="flex-1 min-w-[280px]">

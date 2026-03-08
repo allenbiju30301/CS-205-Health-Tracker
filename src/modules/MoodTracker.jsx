@@ -9,6 +9,7 @@ const MOOD_LABELS = {
   4: 'Good',
   5: 'Excellent',
 }
+const MOOD_EMOJIS = { 1: '😢', 2: '😕', 3: '😐', 4: '🙂', 5: '😄' }
 
 function MoodTracker() {
   const { moodEntries, addMoodEntry, deleteMoodEntry } = useHealthData()
@@ -62,7 +63,7 @@ function MoodTracker() {
                 : 'bg-gray-50 text-gray-800 border-gray-300 hover:bg-gray-100'
             }`}
           >
-            <div className="text-lg">{mood}</div>
+            <div className="text-2xl">{MOOD_EMOJIS[mood]}</div>
             <div
               className={`text-xs mt-1 ${
                 selectedMood === mood ? 'text-white' : 'text-gray-600'
