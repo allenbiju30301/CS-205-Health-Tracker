@@ -10,6 +10,7 @@ import WaterGraph from './components/WaterGraph'
 import MoodHeatmap from './components/MoodHeatmap'
 import CorrelationChart from './components/CorrelationChart'
 import StatsCard from './components/StatsCard'
+import MoodQuote from './components/MoodQuote'
 import FeaturesChecklist from './components/FeaturesChecklist'
 import HistoryView from './components/HistoryView'
 import FileManager from './components/FileManager'
@@ -99,6 +100,7 @@ function AppContent() {
 
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
+              <MoodQuote />
               <div className="flex gap-4 flex-wrap items-start">
                 <div className="flex-1 min-w-[280px]">
                   <StatsCard />
