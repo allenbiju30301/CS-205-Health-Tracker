@@ -28,8 +28,6 @@
 
 - **Styling inconsistencies** - Some Cursor AI-generated code initially mixed light and dark mode styles, which made the UI look inconsistent. I reviewed the JSX and CSS and removed/standardized dark-mode classes so the design is coherent. 
 
-- **Overly generic code suggestions** - The AI sometimes suggested extra abstractions or more complex patterns than necessary. I simplified several components to keep them straightforward.
-
 - **Date handling subtleties** - For streaks and mood trends, the AI’s first attempts didn’t always match the exact definition I wanted. I double-checked date logic and adjusted the filter.
 
 - **Need for human review**  
